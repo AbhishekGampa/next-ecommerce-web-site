@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 
 function Bags() {
   const [products, setProducts] = useState(null);
@@ -27,7 +28,7 @@ function Bags() {
       </div>
     );
   }
-  console.log("products: ", products);
+  //
 
   return (
     <div className="flex flex-row gap-10 flex-wrap lg:justify-center max-md:justify-center ">
@@ -35,26 +36,27 @@ function Bags() {
         let base64Image = btoa(
           product.image.data.map((item) => String.fromCharCode(item)).join("")
         );
-        console.log("base64Image: ", base64Image);
 
         return (
           <div
             key={product._id}
-            className="w-72 h-[290px] overflow-hidden rounded-lg border-[2px] bg-white dark:hover:border-blue-900 transition dark:bg-black relative border-neutral-200 dark:border-neutral-800"
+            className="w-72 h-[290px] overflow-hidden rounded-lg border-[2px] bg-white dark:hover:border-blue-900 transition dark:bg-black relative border-neutral-200 dark:border-neutral-800 cursor-pointer"
           >
-            <Image
-              src={`data:${product.image.mimetype};base64,${base64Image}`}
-              alt={product.name}
-              width={100}
-              height={100} // Add this line
-              className="object-cover w-full h-full hover:scale-110 transition duration-500 ease-in-out transform"
-            />
+            <Link href={`/product/${product._id}`}>
+              <Image
+                src={`data:${product.image.mimetype};base64,${base64Image}`}
+                alt={product.name}
+                width={100}
+                height={100} // Add this line
+                className="object-cover w-full h-full hover:scale-110 transition duration-500 ease-in-out transform"
+              />
 
-            <div className="absolute bottom-0 left-0 right-0 bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 p-2">
-              <h1 className="text-lg font-bold">{product.name}</h1>
-              <p className="text-sm">{product.description}</p>
-              <p className="text-sm">Rs. {product.price}</p>
-            </div>
+              <div className="absolute bottom-0 left-0 right-0 bg-white dark:bg-black bg-opacity-70 dark:bg-opacity-70 p-2">
+                <h1 className="text-lg font-bold">{product.name}</h1>
+                <p className="text-sm">{product.description}</p>
+                <p className="text-sm">Rs. {product.price}</p>
+              </div>
+            </Link>
           </div>
         );
       })}

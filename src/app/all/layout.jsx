@@ -1,10 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 function layout({ children }) {
   const [isShowAll, setIsShowAll] = useState(false);
-  console.log("isShowAll: ", isShowAll);
+  // console.log("isShowAll: ", isShowAll);
   const [isShowCollection, setIsShowCollection] = useState(false);
+
+  const Pathname = usePathname();
+  const path_name = Pathname.split("/");
+  let selectedItem = path_name[path_name.length - 1];
+  selectedItem = selectedItem.toUpperCase();
+  console.log("selectedItem: ", selectedItem);
 
   const handleClickAll = () => {
     setIsShowAll((prevState) => !prevState);
@@ -22,7 +29,7 @@ function layout({ children }) {
         <div className="md:hidden w-full">
           <button className="w-full" onClick={handleClickAll}>
             <div className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30 mb-5 relative ">
-              <div>All</div>
+              <div>{selectedItem}</div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -48,10 +55,24 @@ function layout({ children }) {
                       <a href="/all/bags">Bags</a>
                     </li>
                     <li>
-                      <a href="/all/drinkware">Drinkware</a>
+                      <a
+                        href="/all/drinkware"
+                        onClick={(event) =>
+                          handleSelectItem(event, "Drinkware")
+                        }
+                      >
+                        Drinkware
+                      </a>
                     </li>
                     <li>
-                      <a href="/all/electronics">Electronics</a>
+                      <a
+                        href="/all/electronics"
+                        onClick={(event) =>
+                          handleSelectItem(event, "Electronics")
+                        }
+                      >
+                        Electronics
+                      </a>
                     </li>
                     <li>
                       <a href="/all/footware">Footware</a>

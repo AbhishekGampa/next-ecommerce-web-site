@@ -11,7 +11,7 @@ import {
   faSearch,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
-import MenuBar from "@/components/MenuBar";
+import MenuBar from "../components/MenuBar";
 import { useState } from "react";
 import Cart from "../app/cart/page";
 import { Providers } from "./providers";
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
   console.log("isCartVisible: ", isCartVisible);
 
   const handleClick = () => {
-    console.log("working");
+    // console.log("working");
     setIsCartVisible(true);
   };
 
@@ -55,15 +55,21 @@ export default function RootLayout({ children }) {
           <div className="dark">
             <div className="flex flex-row">
               <div className="md:hidden w-full">
-                <div className="flex justify-between">
-                  <div
-                    className="relative top-[5px] cursor-pointer"
-                    onClick={toggleListVisibility}
-                  >
-                    <FontAwesomeIcon
-                      icon={faBars}
-                      className="h-6 text-white m-6"
-                    />
+                <div
+                  className="flex justify-between"
+                  style={{ alignItems: "center" }}
+                >
+                  <div className=" cursor-pointer ml-4">
+                    <Button
+                      className="border-[2px] rounded-[10px] border-[#404040] h-10 w-10 flex items-center justify-center"
+                      onClick={toggleListVisibility}
+                      // onPress={onOpen}
+                    >
+                      <FontAwesomeIcon
+                        icon={faBars}
+                        className="h-6 text-white m-6"
+                      />
+                    </Button>
                     {isListVisible && (
                       <div
                         onClick={toggleListVisibility}
@@ -271,9 +277,9 @@ export default function RootLayout({ children }) {
               </div>
             </footer>
             <hr className="border-[1.5px]"></hr>
-            <div className="flex flex-row gap-1 items-center max-md:flex-col">
+            <div className="flex flex-row gap-1 items-center max-md:flex-col max-md:text-[10px]">
               <div>
-                <p className="text-[#8a8a8a] text-[15px] font-medium p-6 ">
+                <p className="text-[#8a8a8a] text-[15px] font-medium p-6 max-md:text-[10px] max-md:p-1">
                   © 2024 Gampa Abhishek. All rights reserved
                 </p>
               </div>
@@ -281,7 +287,7 @@ export default function RootLayout({ children }) {
                 <span className="text-[#8a8a8a]">|</span>
               </div>
               <div>
-                <p className="text-[#8a8a8a] text-[15px] font-medium  p-6">
+                <p className="text-[#8a8a8a] text-[15px] font-medium  p-6 max-md:text-[10px] max-md:p-0">
                   Designed by Gampa Abhishek
                 </p>
               </div>
@@ -291,6 +297,7 @@ export default function RootLayout({ children }) {
                 </p>
               </div>
             </div>
+            <br></br>
           </div>
         </body>
       </html>

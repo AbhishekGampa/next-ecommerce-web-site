@@ -27,7 +27,6 @@ function Bags() {
       </div>
     );
   }
-  console.log("products: ", products);
 
   return (
     <div className="flex flex-row gap-10 flex-wrap lg:justify-start max-md:justify-center">
@@ -35,7 +34,6 @@ function Bags() {
         let base64Image = btoa(
           product.image.data.map((item) => String.fromCharCode(item)).join("")
         );
-        console.log("base64Image: ", base64Image);
 
         return (
           <div
