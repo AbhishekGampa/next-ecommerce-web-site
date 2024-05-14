@@ -1,5 +1,5 @@
 import Link from "next/link";
-import logo from "../../app/Images/download.png";
+import logo from "../../app/(parent)/Images/download.png";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";

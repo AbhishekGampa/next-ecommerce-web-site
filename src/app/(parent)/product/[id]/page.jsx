@@ -1,5 +1,5 @@
 "use client";
-
+import { createContext, useContext } from "react";
 import Cart from "../../../app/cart/page";
 import axios from "axios";
 import Image from "next/image";
@@ -8,8 +8,7 @@ import { CarouselProvider, Slider } from "pure-react-carousel";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import "../../../app/globals.css";
-
-const sortedProducts = () => {};
+import { cartContext } from "../../layout";
 
 function Product(req) {
   const [products, setProducts] = useState(null);
@@ -18,6 +17,7 @@ function Product(req) {
   const [description, setDescription] = useState(null);
   const [sortedProducts, setSortedProducts] = useState([]);
   console.log("sortedProducts: ", sortedProducts);
+  const { productid, setProductId } = useContext(cartContext);
 
   const pathname = usePathname();
   console.log("pathname: ", pathname);
@@ -69,6 +69,7 @@ function Product(req) {
 
   const handleClick = () => {
     setIsShow(true);
+    setProductId((pre) => [...pre, productId]);
   };
 
   let base64Image = btoa(
@@ -123,13 +124,16 @@ function Product(req) {
           </div>
         </div>
       </div>
-      {isShow && (
-        <Cart
-          isOpen={isShow}
-          onClose={() => setIsShow(false)}
-          state={productId}
-        ></Cart>
-      )}
+
+      <>
+        {isShow && (
+          <Cart
+            isOpen={isShow}
+            onClose={() => setIsShow(false)}
+            state={productId}
+          ></Cart>
+        )}
+      </>
 
       <div>
         <h1 className="text-white text-5xl font-medium m-5">

@@ -3,25 +3,34 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProductsRequest,
+  fetchProductsSuccess,
+  fetchProductsFailure,
+} from "../../redux/action/index";
 
 function Bags() {
-  const [products, setProducts] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products); // replace with the correct path to your products in the state
+  console.log("products-------------------<> ", products);
+  const error = useSelector((state) => state.error);
 
   useEffect(() => {
+    if (products.products || products.loading || products.error) return;
+    dispatch(fetchProductsRequest());
     axios
       .get("http://localhost:3000/apis/sort")
       .then((res) => {
-        setProducts(res.data.res);
-        setLoading(false);
+        dispatch(fetchProductsSuccess(res.data.res));
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
-        setLoading(false);
+        dispatch(fetchProductsFailure(error.message));
       });
-  }, []);
+  }, [dispatch]);
 
-  if (loading) {
+  if (products.loading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-white"></div>
@@ -32,7 +41,7 @@ function Bags() {
 
   return (
     <div className="flex flex-row gap-10 flex-wrap lg:justify-center max-md:justify-center ">
-      {products?.map((product) => {
+      {products?.products?.map((product) => {
         let base64Image = btoa(
           product.image.data.map((item) => String.fromCharCode(item)).join("")
         );

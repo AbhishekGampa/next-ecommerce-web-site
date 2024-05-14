@@ -47,55 +47,41 @@ function layout({ children }) {
               </svg>
               {isShowAll && (
                 <div className="w-full h-full  absolute top-[115%] left-0">
-                  <ul className="p-5 flex flex-col gap-4 bg-black relative z-10">
-                    <li>
+                  <ul className="p-5 flex flex-col gap-4 bg-black relative z-10 ">
+                    <li className="hover:bg-slate-600">
                       <a href="/all">All</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/bags">Bags</a>
                     </li>
-                    <li>
-                      <a
-                        href="/all/drinkware"
-                        onClick={(event) =>
-                          handleSelectItem(event, "Drinkware")
-                        }
-                      >
-                        Drinkware
-                      </a>
+                    <li className="hover:bg-slate-600">
+                      <a href="/all/drinkware">Drinkware</a>
                     </li>
-                    <li>
-                      <a
-                        href="/all/electronics"
-                        onClick={(event) =>
-                          handleSelectItem(event, "Electronics")
-                        }
-                      >
-                        Electronics
-                      </a>
+                    <li className="hover:bg-slate-600">
+                      <a href="/all/electronics">Electronics</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/footware">Footware</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/headwear">Headwear</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/hoodies">Hoodies</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/jackets">Jackets</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/kids">Kids</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/pets">Pets</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/shirts">Shirts</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a href="/all/stickers">Stickers</a>
                     </li>
                   </ul>
@@ -124,19 +110,19 @@ function layout({ children }) {
               {isShowCollection && (
                 <div className=" w-full h-full  absolute top-[100%] left-0">
                   <ul className="p-5 flex flex-col gap-4 bg-black relative z-10">
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a>Relevance</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a>Trending</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a>Latest arrivals</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a>Price: Low to high</a>
                     </li>
-                    <li>
+                    <li className="hover:bg-slate-600">
                       <a>Price: High to low</a>
                     </li>
                   </ul>

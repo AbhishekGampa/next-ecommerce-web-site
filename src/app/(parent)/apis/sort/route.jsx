@@ -1,5 +1,5 @@
 import database from "../../database";
-import Product from "../../../Models/ProductSchema";
+import Product from "../../../../Models/ProductSchema";
 
 export async function POST(request) {
   await database();
